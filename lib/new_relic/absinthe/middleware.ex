@@ -113,6 +113,8 @@ defmodule NewRelic.Absinthe.Middleware do
         name -> "/Absinthe/#{inspect(res.schema)}/#{operation.type}/#{name}"
       end
 
+    NewRelic.set_transaction_name(framework_name)
+
     NewRelic.add_attributes(
       "absinthe.schema": inspect(res.schema),
       "absinthe.query_complexity": operation.complexity,
